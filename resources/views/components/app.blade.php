@@ -40,6 +40,16 @@
                 "url": "{{ url('/') }}"
             }
         </script>
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3VK6MG91LW"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-3VK6MG91LW');
+        </script>
     </head>
     <body class="flex flex-col items-center justify-center min-h-screen px-4 py-16 font-sans antialiased text-white bg-slate-900 bg-gradient-to-b from-slate-900 to-slate-700 sm:px-8">
         {{ $slot }}
