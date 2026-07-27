@@ -33,7 +33,7 @@
         <!-- JSON-LD -->
         <script type="application/ld+json">
             {
-                "@context": "https://schema.org",
+                "@@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "{{ config('app.name') }}",
                 "description": "Run Composer Packages Effortlessly",
