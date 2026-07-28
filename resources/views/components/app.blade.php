@@ -9,6 +9,7 @@
         <title>{{ $title ?? config('app.name') }}</title>
 
         <link rel="icon" href="{{ url('/favicon.svg') }}" type="image/svg+xml">
+        <meta name="theme-color" content="#19191a">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -33,7 +34,7 @@
         <!-- JSON-LD -->
         <script type="application/ld+json">
             {
-                "@context": "https://schema.org",
+                "@@context": "https://schema.org",
                 "@type": "WebPage",
                 "name": "{{ config('app.name') }}",
                 "description": "Run Composer Packages Effortlessly",
@@ -51,7 +52,9 @@
         gtag('config', 'G-3VK6MG91LW');
         </script>
     </head>
-    <body class="flex flex-col items-center justify-center min-h-screen px-4 py-16 font-sans antialiased text-white bg-slate-900 bg-gradient-to-b from-slate-900 to-slate-700 sm:px-8">
+    <body class="relative flex flex-col items-center justify-center min-h-screen px-4 py-16 font-sans antialiased text-white bg-ink-900 sm:px-8">
+        <div class="fixed inset-0 -z-10 bg-grid bg-grid-64 [mask-image:radial-gradient(ellipse_at_top,white,transparent_75%)]" aria-hidden="true"></div>
+
         {{ $slot }}
 
         <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
