@@ -27,25 +27,25 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #020617;
+    background: #111112;
     border-radius: 1rem;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #2c2c2d;
     border-radius: 1rem;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #484849;
 }
 
 .terminal::before {
     content: "";
     background: linear-gradient(
-        rgba(255, 255, 255, 0.01) 10%,
+        rgba(255, 255, 255, 0.02) 10%,
         rgba(255, 255, 255, 0%) 100%
     );
     position: absolute;
@@ -56,4 +56,12 @@
     transform: skew(-18deg) translate(-55%);
     z-index: 100;
     pointer-events: none;
+}
+
+/* The registration marks framing the install command on the banner */
+.mark {
+    position: absolute;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #ff7826;
 }

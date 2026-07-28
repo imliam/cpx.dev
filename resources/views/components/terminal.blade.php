@@ -1,9 +1,9 @@
-<pre class="terminal relative overflow-y-clip transition-all bg-slate-900 text-mono w-full sm:w-[80ch] max-w-full rounded-xl shadow-2xl px-8 py-8 mx-auto text-left text-lg overflow-x-auto h-full" x-data="terminal({textToUse: {{ $text }}})" x-intersect.once="startTyping()"><span x-html="typedText"></span><span class="caret">|</span></pre>
+<pre class="terminal relative overflow-y-clip transition-all bg-ink-950 ring-1 ring-inset ring-ink-700 text-mono w-full sm:w-[80ch] max-w-full rounded-xl shadow-2xl px-8 py-8 mx-auto text-left text-lg overflow-x-auto h-full" x-data="terminal({textToUse: {{ $text }}})" x-intersect.once="startTyping()"><span x-html="typedText"></span><span class="caret">|</span></pre>
 
 @pushOnce('scripts')
     <script>
         const installText = [
-            '# # Install cpx with <a href="https://getcomposer.org/" target="_blank" class="text-slate-400 hover:text-slate-300">Composer</a>',
+            '# # Install cpx with <a href="https://getcomposer.org/" target="_blank" class="text-ink-400 hover:text-ink-300">Composer</a>',
             '# ',
             'composer global require cpx/cpx',
             '# ',
@@ -17,11 +17,6 @@
         ];
         const laravelInstallerText = [
             'cpx laravel/installer new',
-            ' ',
-            '# # Alternatively, for popular community packages,',
-            '# # you can use the command\'s alias directly',
-            ' ',
-            'cpx laravel new',
             '# ',
             '# # Running bin/laravel from laravel/installer',
             '# ',
@@ -38,74 +33,66 @@
             '# └──────────────────────────────────────────────────────────────┘',
             '# ',
         ];
-        const cpxTestText = [
-            'cpx test',
+        const aliasText = [
+            '# # Tired of typing a package\'s full name?',
+            '# # Alias it.',
+            ' ',
+            'cpx alias laravel/installer laravel',
             '# ',
-            '# # Detected PHPUnit as project\'s test framework',
+            '# <span class="text-orange-500">✓</span> Aliased laravel/installer as laravel',
             '# ',
             ' ',
-            '# <span class="bg-green-500 px-2 py-1">PASS</span>  Tests\\Unit\\ExampleTest',
-            '# <span class="text-green-500">✓</span> that true is true',
+            'cpx laravel new my-app',
+            '# ',
+            '# # Running bin/laravel from laravel/installer',
             '# ',
             ' ',
-            '# <span class="bg-green-500 px-2 py-1">PASS</span>  Tests\\Feature\\CpxIsUsefulTest',
-            '# <span class="text-green-500">✓</span> cpx has proven to be useful',
-            '# ',
-            ' ',
-            '# Tests:    2 passed (2 assertions)',
-            '# Duration: 0.6s',
-            '# ',
-        ];
-        const psalmResultText = [
-            '# Scanning files...',
-            ' ',
-            '# Analyzing files...',
-            ' ',
-            '# ',
-            '# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  50 / 200 (25%)',
-            ' ',
-            '# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 100 / 200 (50%)',
-            ' ',
-            '# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 150 / 200 (75%)',
-            ' ',
-            '# ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 200 / 200 (100%)',
-            ' ',
-            '# ',
-            '# ------------------------------',
-            '# ',
-            '#        No errors found!',
-            '# ',
-            '# ------------------------------',
-            '# ',
-            '# Checks took 6 seconds and used 2GB of memory',
-            '# Psalm was able to infer types for 100% of the codebase',
+            '# # See the aliases you\'ve made with cpx aliases,',
+            '# # and remove one with cpx unalias laravel',
             '# ',
         ];
-        const cpxCheckText = [
-            'cpx check',
+        const phpstanResultText = [
+            '# Note: Using configuration file phpstan.neon.dist.',
             ' ',
-            '# # Detected Psalm as project\'s static analysis tool',
-            '',
+            '#  200/200 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%',
+            ' ',
             '# ',
-            ...psalmResultText,
-        ];
-        const psalmRunText = [
-            'cpx vimeo/psalm psalm',
-            ' ',
-            '# # Alternatively, if there is only 1 command or',
-            '# # the command name is the same as the package',
-            '# # you can omit the command name altogether',
-            ' ',
-            'cpx vimeo/psalm',
-            ' ',
-            '# # Alternatively, for popular community packages,',
-            '# # you can use the command\'s alias directly',
-            ' ',
-            'cpx psalm',
+            '# <span class="bg-green-600 px-2 py-1">OK</span> No errors',
             '# ',
-            ...psalmResultText,
         ];
-        const phpcsFixerText = [
+        const localBinText = [
+            '# # Inside a project that already installs a tool,',
+            '# # cpx runs the version your project pins',
+            ' ',
+            'cpx phpstan analyse',
+            '# ',
+            '# # Running vendor/bin/phpstan from this project',
+            '# ',
+            ...phpstanResultText,
+            ' ',
+            '# # Want the isolated copy instead? Skip the local one.',
+            ' ',
+            'cpx --skip-local phpstan/phpstan analyse',
+            '# ',
+        ];
+        const phpstanRunText = [
+            'cpx phpstan/phpstan phpstan analyse',
+            ' ',
+            '# # If there is only 1 command, or the command name',
+            '# # is the same as the package, you can omit it',
+            ' ',
+            'cpx phpstan/phpstan analyse',
+            '# ',
+            ...phpstanResultText,
+        ];
+        const phpCsFixerRunText = [
+            'cpx friendsofphp/php-cs-fixer php-cs-fixer fix',
+            ' ',
+            '# # If there is only 1 command, or the command name',
+            '# # is the same as the package, you can omit it',
+            ' ',
+            'cpx friendsofphp/php-cs-fixer fix',
+            '# ',
             '# PHP CS Fixer 3 by Fabien Potencier, Dariusz Ruminski and contributors.',
             '# Loaded config from ".php-cs-fixer.php".',
             ' ',
@@ -118,51 +105,25 @@
             '# Fixed 2 of 4096 files in 6 seconds, 36.00 MB memory used',
             '# ',
         ];
-        const cpxFormatText = [
-            'cpx format',
+        const versionedRunText = [
+            '# # Need a specific version? Constrain it like Composer would.',
             ' ',
-            '# # Detected PHP-CS-Fixer as project\'s code formatting tool',
-            ' ',
+            'cpx friendsofphp/php-cs-fixer:^3.0 fix ./src',
             '# ',
-            ...phpcsFixerText
-        ];
-        const phpCsFixerRunText = [
-            'cpx friendsofphp/php-cs-fixer php-cs-fixer fix',
-            ' ',
-            '# # Alternatively, if there is only 1 command or',
-            '# # the command name is the same as the package',
-            '# # you can omit the command name altogether',
-            ' ',
-            'cpx friendsofphp/php-cs-fixer fix',
-            ' ',
-            '# # Alternatively, for popular community packages,',
-            '# # you can use the command\'s alias directly',
-            ' ',
-            'cpx php-cs-fixer fix',
+            '# # Installing friendsofphp/php-cs-fixer (v3.64.0)',
             '# ',
-            ...phpcsFixerText
-        ];
-        const cpxHelpText = [
-            'cpx help',
-            ' ',
-            '# # To see more commands',
-            ' ',
         ];
         const examples = [
-            [...laravelInstallerText, ' ', ...cpxTestText],
-            [...laravelInstallerText, ' ', ...cpxCheckText],
-            [...laravelInstallerText, ' ', ...cpxFormatText],
-            [...phpCsFixerRunText, ' ', ...cpxTestText],
-            [...phpCsFixerRunText, ' ', ...cpxCheckText],
-            [...psalmRunText, ' ', ...cpxTestText],
-            [...psalmRunText, ' ', ...cpxFormatText],
+            [...laravelInstallerText, ' ', ...aliasText],
+            [...phpCsFixerRunText, ' ', ...versionedRunText],
+            [...phpstanRunText, ' ', ...localBinText],
         ];
 
-        const composerCommandExamples = [laravelInstallerText, phpCsFixerRunText, psalmRunText];
+        const composerCommandExamples = [laravelInstallerText, phpCsFixerRunText, phpstanRunText];
         const randomComposerCommandText = composerCommandExamples[Math.floor(Math.random() * composerCommandExamples.length)];
 
-        const normalizeCommandExamples = [cpxTestText, cpxCheckText, cpxFormatText];
-        const randomNormalizeCommandText = normalizeCommandExamples[Math.floor(Math.random() * normalizeCommandExamples.length)];
+        const projectAwareExamples = [localBinText, aliasText];
+        const randomProjectAwareText = projectAwareExamples[Math.floor(Math.random() * projectAwareExamples.length)];
 
         function terminal({ textToUse }) {
             return {
@@ -189,7 +150,7 @@
                         }
                         if (this.currentIndex === 0 && this.commandText[this.currentLine] && this.commandText[this.currentLine].startsWith(this.commentPrefix)) {
                             const text = this.commandText[this.currentLine].slice(this.commentPrefix.length);
-                            this.typedText += `<span class="text-slate-500">${text}</span>`;
+                            this.typedText += `<span class="text-ink-500">${text}</span>`;
                             this.typedText += '<br>';
                             this.currentLine++;
                             typing();
